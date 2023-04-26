@@ -27,6 +27,7 @@
     		pictureArray.push(picture);
     		pictureNameArray.push(pictureName);
     		alert("선택하신 그림을 저장하였습니다.");
+    		myform.pictureName.value = "";
     	}
     }
     
@@ -36,13 +37,10 @@
     		return false;
     	}
     	
-    	let str = '';
-    	for(let i=0; i<pictureArray.length; i++) {
-    		str += '<img src="${pageContext.request.contextPath}/images/'+pictureArray[i]+'.jpg" width="100px" />&nbsp;';
-    		str += '<font color="blue"><b>'+pictureNameArray[i]+'</b></font>';
-    		str += '<br/><br/>';
-    	}
-    	demo.innerHTML = str;
+    	myform.pictureArray.value = pictureArray;
+    	myform.pictureNameArray.value = pictureNameArray;
+    	
+    	myform.submit();
     }
     
     function pictureReset() {
@@ -52,6 +50,15 @@
     	pictureNameArray.splice(0,pictureNameArray.length);
     	demo.innerHTML = "";
     	alert("저장소의 그림을 모두 제거시켰습니다.");
+    }
+    
+    function moveCheck() {
+    	let picture = myform.picture.value;
+    	let str = '<img src="${pageContext.request.contextPath}/images/'+picture+'.jpg" width="400px" />&nbsp;';
+    	demo.innerHTML = str;
+    	
+    	myform.pictureName.value = "";
+    	myform.pictureName.focus();
     }
   </script>
 </head>
@@ -64,11 +71,11 @@
     '그림명'과, '그림파일명'을 저장시켜준다.(여러개를 저장할 수 있도록 처리)
     마지막으로 '출력'버튼을 클릭하면 아래쪽(demo)으로 저장된 모든 그림파일과 그림파일명을 출력한다.
   </pre>
-  <form name="myform" method="post" action="">
+  <form name="myform" method="post" action="${pageContext.request.contextPath}/t0427/Jstl_Ex2_2Ok">
     <div class="row">
       <div class="col">
 		    그림선택 :
-		    <select name="picture" id="picture" class="form-control">
+		    <select name="picture" id="picture" onchange="moveCheck()" class="form-control">
 			    <option value="">그림번호선택</option>
 			    <c:forEach var="i" begin="1" end="6">
 			      <option>${i}</option>
@@ -88,6 +95,8 @@
 	  </div>
 	  <hr/>
 	  <div id="demo"></div>
+	  <input type="hidden" name="pictureArray"/>
+	  <input type="hidden" name="pictureNameArray"/>
   </form>
 </div>
 <p><br/></p>

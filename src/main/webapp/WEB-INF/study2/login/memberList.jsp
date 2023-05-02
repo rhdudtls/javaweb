@@ -14,7 +14,7 @@
 <jsp:include page="/include/header.jsp" />
 <p><br/></p>
 <div class="container">
-  <h2>전 체 회 원 리 스 트</h2>
+  <h2>전 체 회 원 리 스 트2</h2>
   <table class="table table-hover text-center">
     <tr class="table-dark text-dark">
       <th>번호</th>
@@ -44,7 +44,7 @@
   </table>
   <br/>
   <div>
-    <a href="${ctp}/study/0428_database/memberMain.re" class="btn btn-success">돌아가기</a>
+    <a href="${ctp}/MemberMain.re" class="btn btn-success">돌아가기</a>
   </div>
 </div>
 <p><br/></p>

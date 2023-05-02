@@ -25,7 +25,7 @@
 <jsp:include page="/include/header.jsp" />
 <p><br/></p>
 <div class="container">
-  <h2>개별 회원 조회</h2>
+  <h2>개별 회원 조회2</h2>
   <table class="table table-bordered">
     <tr>
       <th>고유번호</th>
@@ -58,9 +58,9 @@
   </table>
   <br/>
   <p>
-    <a href="${ctp}/study/0428_database/memberMain.jsp" class="btn btn-success mr-3">돌아가기</a>
+    <a href="${ctp}/study/0428_database/MemberMain.re" class="btn btn-success mr-3">돌아가기</a>
     <c:if test="${vo.mid == sMid}">
-	    <a href="${ctp}/database/Update.jsp" class="btn btn-success mr-3">정보수정</a>
+	    <a href="${ctp}/database/Update.re" class="btn btn-success mr-3">정보수정</a>
 	    <a href="javascript:deleteCheck()" class="btn btn-success mr-3">회원탈퇴</a>
     </c:if>
   </p>

@@ -14,7 +14,7 @@
 	<script>
 	
 	</script>
-	</head>
+</head>
 <body>
 <p><br/></p>
 <div class="container">

@@ -8,7 +8,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>guestList2(일반방명록리스트-페이징처리x).jsp</title>
+  <title>guestList2(일반방명록리스트-페이징처리 하지 않음).jsp</title>
   <jsp:include page="/include/bs4.jsp" />
   <style>
     th {
@@ -28,7 +28,7 @@
         <c:if test="${sAdmin != 'adminOk'}"><a href="${ctp}/AdminLogin.gu" class="btn btn-success btn-sm">관리자</a></c:if>
         <c:if test="${sAdmin == 'adminOk'}"><a href="${ctp}/AdminLogout.gu" class="btn btn-danger btn-sm">관리자로그아웃</a></c:if>
       </td>
-      <td style="text-align:right;"><a href="${ctp}/GuestInput.gu" class="btn btn-secondary btn-sm">글쓰기</a></td>
+      <td style="text-align:right;"><a href="${ctp}/GuestInput.gu" class="btn btn-primary btn-sm">글쓰기</a></td>
     </tr>
   </table>
   <c:forEach var="vo" items="${vos}" varStatus="st">

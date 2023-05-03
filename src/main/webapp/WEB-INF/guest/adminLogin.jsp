@@ -24,7 +24,7 @@
 	  <table class="table table-bordered">
 	    <tr>
 	      <th>관리자아이디</th>
-	      <td><input type="text" name="mid" id="mid" class="form-control" required /></td>
+	      <td><input type="text" name="mid" id="mid" value="admin" class="form-control" required /></td>
 	    </tr>
 	    <tr>
 	      <th>비밀번호</th>

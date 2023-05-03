@@ -8,7 +8,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>guestList3(이전/다음 페이징 처리).jsp</title>
+  <title>guestList3(이전/다음페이징처리).jsp</title>
   <jsp:include page="/include/bs4.jsp" />
   <style>
     th {
@@ -28,22 +28,22 @@
         <c:if test="${sAdmin != 'adminOk'}"><a href="${ctp}/AdminLogin.gu" class="btn btn-success btn-sm">관리자</a></c:if>
         <c:if test="${sAdmin == 'adminOk'}"><a href="${ctp}/AdminLogout.gu" class="btn btn-danger btn-sm">관리자로그아웃</a></c:if>
       </td>
-      <td style="text-align:right;"><a href="${ctp}/GuestInput.gu" class="btn btn-secondary btn-sm">글쓰기</a></td>
+      <td style="text-align:right;"><a href="${ctp}/GuestInput.gu" class="btn btn-primary btn-sm">글쓰기</a></td>
     </tr>
   </table>
   <table class="table table-borderless mb-0 p-0">
     <tr>
       <td class="text-right">
-      	<!-- 첫 페이지 / 이전페이지/ (현재페이지번호/총페이지수) / 다음페이지 / 마지막페이지 -->
-      	<c:if test="${pag > 1}">
-      		<a href="${ctp}/GuestList.gu?pag=1" title="첫페이지로">◁◁</a>
-      		<a href="${ctp}/GuestList.gu?pag=${pag-1}" title="이전페이지로">◀</a>
-      	</c:if>
-      	${pag}/${totPage}
-      	<c:if test="${pag < totPage}">
-      		<a href="${ctp}/GuestList.gu?pag=${pag+1}" title="다음페이지로">▶</a>
-      		<a href="${ctp}/GuestList.gu?pag=${totPage}" title="마지막페이지로">▷▷</a>
-      	</c:if>
+        <!-- 첫페이지 / 이전페이지 / (현재페이지번호/총페이지수) / 다음페이지 / 마지막페이지 -->
+        <c:if test="${pag > 1}">
+          <a href="${ctp}/GuestList.gu?pag=1" title="첫페이지로">◁◁</a>
+          <a href="${ctp}/GuestList.gu?pag=${pag-1}" title="이전페이지로">◀</a>
+        </c:if>
+        ${pag}/${totPage}
+        <c:if test="${pag < totPage}">
+          <a href="${ctp}/GuestList.gu?pag=${pag+1}" title="다음페이지로">▶</a>
+          <a href="${ctp}/GuestList.gu?pag=${totPage}" title="마지막페이지로">▷▷</a>
+        </c:if>
       </td>
     </tr>
   </table>

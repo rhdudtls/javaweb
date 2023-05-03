@@ -98,21 +98,38 @@ public class GuestDAO {
 		}
 		return res;
 	}
-	
+
 	// 총 레코드 건수 구하기
 	public int getTotRecCnt() {
 		int totRecCnt = 0;
 		try {
-			sql = "select count(*) as cnt from guest";
+			sql = "select count(idx) as cnt from guest";
 			pstmt = conn.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			rs.next();
-			totRecCnt = rs.getInt("cnt"); // re.getInt(0)도 가능 위에 as 안줬을때!!
+			totRecCnt = rs.getInt("cnt");
 		} catch (SQLException e) {
 			System.out.println("SQL 오류 : " + e.getMessage());
 		} finally {
 			rsClose();
 		}
 		return totRecCnt;
+	}
+
+	// 방명록의 자료 삭제처리
+	public int setGuestDelete(int idx) {
+		int res = 0;
+		try {
+			sql = "delete from guest where idx = ?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, idx);
+			pstmt.executeUpdate();
+			res = 1;
+		} catch (SQLException e) {
+			System.out.println("SQL 오류 : " + e.getMessage());
+		} finally {
+			pstmtClose();
+		}
+		return res;
 	}
 }

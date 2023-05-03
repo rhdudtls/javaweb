@@ -11,7 +11,7 @@
         <a class="nav-link" href="${pageContext.request.contextPath}/GuestList.gu">Guest</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Board</a>
+        <a class="nav-link" href="${pageContext.request.contextPath}/BoardList.bo">Board</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">PDS</a>
@@ -25,6 +25,7 @@
 			      <a class="dropdown-item" href="${pageContext.request.contextPath}/mapping/Test5.do">URL매핑(확장자패턴1)</a>
 			      <a class="dropdown-item" href="${pageContext.request.contextPath}/mapping/Test5.mi">URL매핑(확장자패턴2)</a>
 			      <a class="dropdown-item" href="${pageContext.request.contextPath}/study/0428_database/Login.re">로그인연습2</a>
+			      <a class="dropdown-item" href="${pageContext.request.contextPath}/Password.st">암호화연습</a>
 			    </div>
 			  </div>  
       </li>   
@@ -33,7 +34,7 @@
 			    <button type="button" class="btn text-light dropdown-toggle" data-toggle="dropdown">Study2</button>
 			    <div class="dropdown-menu">
 			      <a class="dropdown-item" href="#">URL매핑(디렉토리패턴)</a>
-			      <a class="dropdown-item" href="#">로그인연습3</a>
+			      <a class="dropdown-item" href="${pageContext.request.contextPath}/Login.fa">로그인연습3</a>
 			      <a class="dropdown-item" href="#">Link 3</a>
 			    </div>
 			  </div>  

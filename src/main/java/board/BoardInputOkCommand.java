@@ -13,8 +13,7 @@ public class BoardInputOkCommand implements BoardInterface {
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		String mid = session.getAttribute("sMid")==null? "" : (String)session.getAttribute("sMid");
-		String nickName = session.getAttribute("sNickName")==null? "" : (String)session.getAttribute("sNickName");
-		
+		String nickName = session.getAttribute("sNickName")==null? "" : (String)session.getAttribute("sNickName");	
 		String title = request.getParameter("title")==null ? "" : request.getParameter("title");
 		String content = request.getParameter("content")==null ? "" : request.getParameter("content");
 		String email = request.getParameter("email")==null ? "" : request.getParameter("email");
@@ -25,7 +24,8 @@ public class BoardInputOkCommand implements BoardInterface {
 		BoardVO vo = new BoardVO();
 		
 		vo.setMid(mid);
-		vo.setNickName(nickName);
+//		vo.setNickName(nickName);
+		vo.setNickName(mid);
 		vo.setTitle(title);
 		vo.setContent(content);
 		vo.setEmail(email);

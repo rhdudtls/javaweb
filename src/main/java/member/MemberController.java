@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @SuppressWarnings("serial")
 @WebServlet("*.mem")
-public class MemberController extends HttpServlet{
+public class MemberController extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		MemberInterface command = null;
@@ -21,6 +21,8 @@ public class MemberController extends HttpServlet{
 		String com = uri.substring(uri.lastIndexOf("/"),uri.lastIndexOf("."));
 		
 		if(com.equals("/MemberLogin")) {
+			command = new MemberLoginCommand();
+			command.execute(request, response);
 			viewPage += "/memberLogin.jsp";
 		}
 		else if(com.equals("/MemberLoginOk")) {
@@ -28,11 +30,14 @@ public class MemberController extends HttpServlet{
 			command.execute(request, response);
 			viewPage = "/include/message.jsp";
 		}
-		
+		else if(com.equals("/MemberLogout")) {
+			command = new MemberLogoutCommand();
+			command.execute(request, response);
+			viewPage = "/include/message.jsp";
+		}
 		else if(com.equals("/MemberJoin")) {
 			viewPage += "/memberJoin.jsp";
 		}
-		
 		else if(com.equals("/MemberJoinOk")) {
 			command = new MemberJoinOkCommand();
 			command.execute(request, response);
@@ -42,6 +47,16 @@ public class MemberController extends HttpServlet{
 			command = new MemberIdCheckCommand();
 			command.execute(request, response);
 			viewPage += "/memberIdCheck.jsp";
+		}
+		else if(com.equals("/MemberNickCheck")) {
+			command = new MemberNickCheckCommand();
+			command.execute(request, response);
+			viewPage += "/memberNickCheck.jsp";
+		}
+		else if(com.equals("/MemberMain")) {
+			command = new MemberMainCommand();
+			command.execute(request, response);
+			viewPage += "/memberMain.jsp";
 		}
 		else if(com.equals("/MemberList")) {
 			command = new MemberListCommand();

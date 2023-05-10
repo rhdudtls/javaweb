@@ -24,6 +24,7 @@ create table member(
 	startDate datetime default now(), /*최초 가입일 */
 	lastDate datetime default now(), /*마지막 접속일 */
 	todayCnt int default 0, /*오늘 방문 횟수 */
+	salt char(8) not null,
 	primary key(idx, mid)
 );
 

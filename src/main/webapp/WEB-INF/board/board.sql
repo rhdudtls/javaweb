@@ -23,6 +23,23 @@ insert into board values(default,'admin','관리자','게시판 서비스를 시
 
 select * from board;
 
+/* 게시판에 댓글 달기 */
+create table boardReply(
+	idx int not null auto_increment,
+	boardIdx int not null,
+	mid varchar(20) not null,
+	nickName varchar(20) not null,
+	wDate datetime default now(),
+	hostIp varchar(50) not null,
+	content text not null,
+	primary key(idx),
+	foreign key(boardIdx) references board(idx)
+	on update cascade
+	on delete restrict
+);
+
+desc boardReply;
+
 /* 날짜함수 처리 연습 */
 select now(); /*오늘 날짜 보여주기*/
 select year(now());
@@ -63,3 +80,8 @@ select *, datediff(wDate, now()) as day_diff, timestampdiff(hour, wDate, now()) 
 
 /* 날짜 양식(date_format() : 4자리년도(%Y), 월(%m), 일(%d) */
 select wDate, date_format(wDate, '%Y-%m-%d %H:% i') from board;
+
+/* 이전글/다음글 꺼내오기 */
+select * from board where idx=8;
+select idx, title from board where idx < 8 order by idx desc limit 1; /*이전글*/
+select idx, title from board where idx > 8 limit 1; /*다음글*/

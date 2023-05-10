@@ -12,8 +12,9 @@ public class BoardInputOkCommand implements BoardInterface {
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		String mid = session.getAttribute("sMid")==null? "" : (String)session.getAttribute("sMid");
-		String nickName = session.getAttribute("sNickName")==null? "" : (String)session.getAttribute("sNickName");	
+		String mid = session.getAttribute("sMid")==null ? "" : (String) session.getAttribute("sMid");
+		String nickName = session.getAttribute("sNickName")==null ? "" : (String) session.getAttribute("sNickName");
+		
 		String title = request.getParameter("title")==null ? "" : request.getParameter("title");
 		String content = request.getParameter("content")==null ? "" : request.getParameter("content");
 		String email = request.getParameter("email")==null ? "" : request.getParameter("email");
@@ -24,8 +25,7 @@ public class BoardInputOkCommand implements BoardInterface {
 		BoardVO vo = new BoardVO();
 		
 		vo.setMid(mid);
-//		vo.setNickName(nickName);
-		vo.setNickName(mid);
+		vo.setNickName(nickName);
 		vo.setTitle(title);
 		vo.setContent(content);
 		vo.setEmail(email);
@@ -42,7 +42,7 @@ public class BoardInputOkCommand implements BoardInterface {
 			request.setAttribute("url", request.getContextPath()+"/BoardList.bo");
 		}
 		else {
-			request.setAttribute("msg", "게시글이 등록실패!!!!");
+			request.setAttribute("msg", "게시글이 등록실패~~");
 			request.setAttribute("url", request.getContextPath()+"/BoardInput.bo");
 		}
 	}

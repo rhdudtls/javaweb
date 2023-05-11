@@ -1,6 +1,7 @@
 package board;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -11,16 +12,12 @@ public class BoardDeleteCommand implements BoardInterface {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int idx = request.getParameter("idx")==null ? 0 : Integer.parseInt(request.getParameter("idx"));
-		int pag = request.getParameter("pag")==null ? 0 : Integer.parseInt(request.getParameter("pag"));
-		int pageSize = request.getParameter("pageSize")==null ? 0 : Integer.parseInt(request.getParameter("pageSize"));
-		String nickName = request.getParameter("nickName")==null ? "" : request.getParameter("nickName");
 		
-		//정상적인 경로를 통해서 삭제하지 않을 경우는 홈으로 이동
+		// 정상적인 경로를 통해서 삭제하지 않을경우는 홈으로 보낸다.
 		HttpSession session = request.getSession();
-		String sNickName = (String)session.getAttribute("sNickName");
-		int sLevel = (int)session.getAttribute("sLevel");
-		System.out.println("sNickName :" + sNickName + ", nickName : " + nickName);
+		String sNickName = (String) session.getAttribute("sNickName");
+		int sLevel = (int) session.getAttribute("sLevel");
+		String nickName = request.getParameter("nickName")==null ? "" : request.getParameter("nickName");
 		
 		if(sLevel != 0) {
 			if(!sNickName.equals(nickName)) {
@@ -29,8 +26,23 @@ public class BoardDeleteCommand implements BoardInterface {
 				return;
 			}
 		}
+		
+		
+		int idx = request.getParameter("idx")==null ? 0 : Integer.parseInt(request.getParameter("idx"));
+		int pag = request.getParameter("pag")==null ? 0 : Integer.parseInt(request.getParameter("pag"));
+		int pageSize = request.getParameter("pageSize")==null ? 0 : Integer.parseInt(request.getParameter("pageSize"));
+		
 		BoardDAO dao = new BoardDAO();
 		
+		// 현재글의 댓글이 있는지 확인후 삭제처리한다.
+		ArrayList<BoardReplyVO> vos = dao.getBoardReply(idx);
+		if(vos.size() != 0) {
+			request.setAttribute("msg", "현 게시글에 댓글이 존재합니다.\\n댓글을 먼저 삭제해 주세요.");
+			request.setAttribute("url", request.getContextPath()+"/BoardContent.bo?idx="+idx+"&pag="+pag+"&pageSize="+pageSize);
+			return;
+		}
+		
+		// 현재글의 댓글이 없다면 현재글을 삭제처리한다.
 		int res = dao.setBoardDelete(idx);
 		
 		if(res == 1) {

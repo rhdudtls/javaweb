@@ -61,7 +61,7 @@
     </tr>
     <c:forEach var="vo" items="${vos}" varStatus="st">
       <tr>
-        <td>${curScrStartNo}</td>
+        <td class="text-left">${curScrStartNo}</td>
         <c:set var="curScrStartNo" value="${curScrStartNo-1}"></c:set>
         <td>
           <c:if test="${vo.openSw == 'OK' || sLevel == 0 || sMid == vo.mid}">
@@ -70,6 +70,9 @@
           </c:if>
           <c:if test="${vo.openSw != 'OK' && sLevel != 0 && sMid != vo.mid}">
             ${vo.title}
+          </c:if>
+          <c:if test="${vo.replyCount != 0}">
+            (${vo.replyCount})
           </c:if>
         </td>
         <td>${vo.nickName}</td>

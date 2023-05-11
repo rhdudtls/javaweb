@@ -85,3 +85,22 @@ select wDate, date_format(wDate, '%Y-%m-%d %H:% i') from board;
 select * from board where idx=8;
 select idx, title from board where idx < 8 order by idx desc limit 1; /*이전글*/
 select idx, title from board where idx > 8 limit 1; /*다음글*/
+
+/* 게시판 리스트 글제목 옆에 해당글의 댓글 수를 출력하시오. */
+select * from board order by idx desc;
+
+select count(*) from boardReply where boardIdx = 21;
+
+select boardIdx, count(*) as replyCnt from boardReply where boardIdx = 21;
+
+select board.nickName, boardIdx, count(*) as replyCnt from board, boardReply where board.idx=boardReply.boardIdx and boardIdx = 21;
+select board.*, count(*) as replyCnt from board, boardReply where board.idx=boardReply.boardIdx group by board.idx;
+select board.mid, boardReply.nickName from board, boardReply where board.idx = boardReply.boardIdx and board.idx = 21;
+
+select board.*, count(*) as replyCnt from board, boardReply where board.idx=boardReply.boardIdx group by board.idx order by board.idx desc limit 5;
+
+select *,
+  (select count(*) from boardReply where boardIdx=b.idx) as replyCnt
+  from board b
+  order by idx desc
+  limit 5;

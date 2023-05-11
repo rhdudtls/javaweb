@@ -21,10 +21,10 @@ public class BoardController extends HttpServlet {
 		String uri = request.getRequestURI();
 		String com = uri.substring(uri.lastIndexOf("/"),uri.lastIndexOf("."));
 		
-		//세션이 끊기면 작업의 진행 중지 및 홈으로 이동
+		// 세션이 끈겼다고한다면 작업의 진행을 중지시키고 홈으로 전송한다.
 		HttpSession session = request.getSession();
-		int level = session.getAttribute("sLevel")==null? 99 : (int)session.getAttribute("sLevel");
-		
+		int level = session.getAttribute("sLevel")==null ? 99 : (int) session.getAttribute("sLevel");
+				
 		if(level > 4) {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/");
 			dispatcher.forward(request, response);
@@ -69,15 +69,15 @@ public class BoardController extends HttpServlet {
 			command.execute(request, response);
 			viewPage += "/boardSearch.jsp";
 		}
-		else if(com.equals("/BoardUpdate")) {
-			command = new BoardUpdateCommand();
-			command.execute(request, response);
-			viewPage += "/boardUpdate.jsp";
-		}
 		else if(com.equals("/BoardDelete")) {
 			command = new BoardDeleteCommand();
 			command.execute(request, response);
 			viewPage = "/include/message.jsp";
+		}
+		else if(com.equals("/BoardUpdate")) {
+			command = new BoardUpdateCommand();
+			command.execute(request, response);
+			viewPage += "/boardUpdate.jsp";
 		}
 		else if(com.equals("/BoardUpdateOk")) {
 			command = new BoardUpdateOkCommand();
@@ -89,6 +89,12 @@ public class BoardController extends HttpServlet {
 			command.execute(request, response);
 			return;
 		}
+		else if(com.equals("/BoardReplyDelete")) {
+			command = new BoardReplyDeleteCommand();
+			command.execute(request, response);
+			return;
+		}
+		
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);
 	}

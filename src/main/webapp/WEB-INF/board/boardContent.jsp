@@ -117,6 +117,30 @@
     		}
     	});
     }
+    
+    // 댓글삭제
+    function replyDelete(idx) {
+    	let ans = confirm("선택한 댓글을 삭제하시겠습니까?");
+      if(!ans) return false;
+      
+      $.ajax({
+        type : 'post',
+        url : '${ctp}/BoardReplyDelete.bo',
+        data : {replyIdx : idx},
+        success : function(res) {
+          if(res == '1') {
+           alert('댓글이 삭제되었습니다.');
+           location.reload();
+          }
+          else {
+           alert('댓글이 삭제되지 않았습니다.');
+          }
+        },
+        error : function() {
+          alert('전송실패~~');
+        }
+      });
+    }
   </script>
 </head>
 <body>
@@ -211,16 +235,16 @@
         <th>접속IP</th>
       </tr>
       <c:forEach var="replyVo" items="${replyVos}" varStatus="st">
-      	<tr class="text-center">
-      	  <td>${replyVo.nickName}
-      	    <c:if test="${sMid == replyVo.mid || sLevel == 0}">
-      	      (<a href="javascript:replyDelete(${replyVo.idx})" title="댓글삭제">❌</a>)
-      	    </c:if>
-      	  </td>
-      	  <td class="text-left">${fn:replace(replyVo.content, newLine, "<br/>")}</td>
-      	  <td>${fn:substring(replyVo.wDate, 0, 10)}</td>
-      	  <td>${replyVo.hostIp}</td>
-      	</tr>
+        <tr>
+          <td class="text-center">${replyVo.nickName}
+            <c:if test="${sMid == replyVo.mid || sLevel == 0}">
+              (<a href="javascript:replyDelete(${replyVo.idx})" title="댓글삭제"><b>x</b></a>)
+            </c:if>
+          </td>
+          <td>${fn:replace(replyVo.content, newLine, "<br/>")}</td>
+          <td class="text-center">${fn:substring(replyVo.wDate,0,10)}</td>
+          <td class="text-center">${replyVo.hostIp}</td>
+        </tr>
       </c:forEach>
     </table>
   </div>

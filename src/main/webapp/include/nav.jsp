@@ -55,7 +55,7 @@
 			    <div class="dropdown-menu">
 			      <a class="dropdown-item" href="${ctp}/MemberMain.mem">회원메인방</a>
 			      <a class="dropdown-item" href="#">회원정보수정</a>
-			      <a class="dropdown-item" href="#">회원리스트</a>
+			      <a class="dropdown-item" href="${ctp}/MemberList.mem">회원리스트</a>
 			      <a class="dropdown-item" href="#">회원탈퇴</a>
 			    </div>
 			  </div>  

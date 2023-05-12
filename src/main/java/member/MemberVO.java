@@ -26,6 +26,8 @@ public class MemberVO {
 	private int todayCnt;
 	private String salt;
 	
+	private int deleteDiff;
+	
 	public int getIdx() {
 		return idx;
 	}
@@ -170,13 +172,20 @@ public class MemberVO {
 	public void setSalt(String salt) {
 		this.salt = salt;
 	}
+	public int getDeleteDiff() {
+		return deleteDiff;
+	}
+	public void setDeleteDiff(int deleteDiff) {
+		this.deleteDiff = deleteDiff;
+	}
+	
 	@Override
 	public String toString() {
 		return "MemberVO [idx=" + idx + ", mid=" + mid + ", pwd=" + pwd + ", nickName=" + nickName + ", name=" + name
-				+ ", gender=" + gender + ", birthday=" + birthday + ", tel=" + tel + ", address=" + address + ", email=" + email
-				+ ", homePage=" + homePage + ", job=" + job + ", hobby=" + hobby + ", photo=" + photo + ", content=" + content
-				+ ", userInfor=" + userInfor + ", userDel=" + userDel + ", point=" + point + ", level=" + level + ", visitCnt="
-				+ visitCnt + ", startDate=" + startDate + ", lastDate=" + lastDate + ", todayCnt=" + todayCnt + ", salt=" + salt
-				+ "]";
+				+ ", gender=" + gender + ", birthday=" + birthday + ", tel=" + tel + ", address=" + address + ", email="
+				+ email + ", homePage=" + homePage + ", job=" + job + ", hobby=" + hobby + ", photo=" + photo
+				+ ", content=" + content + ", userInfor=" + userInfor + ", userDel=" + userDel + ", point=" + point
+				+ ", level=" + level + ", visitCnt=" + visitCnt + ", startDate=" + startDate + ", lastDate=" + lastDate
+				+ ", todayCnt=" + todayCnt + ", salt=" + salt + ", deleteDiff=" + deleteDiff + "]";
 	}
 }

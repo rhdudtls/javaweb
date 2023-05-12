@@ -18,7 +18,6 @@ public class MemberLoginCommand implements MemberInterface {
 				break;
 			}
 		}
-
 	}
 
 }

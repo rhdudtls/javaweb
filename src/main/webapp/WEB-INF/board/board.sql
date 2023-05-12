@@ -77,7 +77,7 @@ select timestampdiff(hour, now(), '2023-05-04');
 select idx, timestampdiff(hour, wDate, now()) as hour_diff from board;
 select *, timestampdiff(hour, wDate, now()) as hour_diff from board order by idx desc limit 0,5
 select *, datediff(wDate, now()) as day_diff, timestampdiff(hour, wDate, now()) as hour_diff from board order by idx desc limit 0,5
-
+select timestampdiff(day, '2023-05-01', now());
 /* 날짜 양식(date_format() : 4자리년도(%Y), 월(%m), 일(%d) */
 select wDate, date_format(wDate, '%Y-%m-%d %H:% i') from board;
 

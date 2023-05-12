@@ -7,18 +7,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-public class MemberLogoutCommand implements MemberInterface {
+public class MemberDeleteAskCommand implements MemberInterface {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
+		String mid = (String)session.getAttribute("sMid");
 		
-		String nickName = (String) session.getAttribute("sNickName");
+		MemberDAO dao = new MemberDAO();
+		
+		dao.setDeleteAskOk(mid);
 		
 		session.invalidate();
 		
-		request.setAttribute("msg", nickName + "님 로그아웃 되었습니다.");
-		request.setAttribute("url", request.getContextPath()+"/MemberLogin.mem");
+		request.setAttribute("msg", "회원 탈퇴 완료!");
+		request.setAttribute("url", request.getContextPath()+"/");
 	}
 
 }

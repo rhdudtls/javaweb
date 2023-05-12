@@ -8,6 +8,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>boardUpdate.jsp</title>
   <jsp:include page="/include/bs4.jsp" />
+  <style>
+    th {
+      text-align: center;
+      background-color: #eee;
+    }
+  </style>
   <script>
     'use strict';
     
@@ -50,7 +56,7 @@
       </tr>
       <tr>
         <th>홈페이지</th>
-        <td><input type="text" name="homePage" id="homePage" value="${vo.homePage}" placeholder="홈페이지를 입력하세요" class="form-control"/></td>
+        <td><input type="text" name="homePage" id="homePage"  value="${vo.homePage}"class="form-control"/></td>
       </tr>
       <tr>
         <th>글내용</th>
@@ -65,9 +71,9 @@
       </tr>
       <tr>
         <td colspan="2" class="text-center">
-          <input type="button" value="글수정하기" onclick="fCheck()" class="btn btn-info"/>
-          <input type="reset" value="다시입력" class="btn btn-secondary"/>
-          <input type="button" value="돌아가기" onclick="location.href='${ctp}/BoardContent.bo?idx=${vo.idx}&pag=${pag}&pageSize=${pageSize}';" class="btn btn-success"/>
+          <input type="button" value="글수정하기" onclick="fCheck()" class="btn btn-primary"/> &nbsp;
+          <input type="reset" value="다시입력" class="btn btn-warning"/> &nbsp;
+          <input type="button" value="돌아가기" onclick="location.href='${ctp}/BoardContent.bo?idx=${vo.idx}&pag=${pag}&pageSize=${pageSize}';" class="btn btn-secondary"/>
         </td>
       </tr>
     </table>

@@ -26,7 +26,7 @@
 		    </div>
 		    <div class="form-group">
 		      <label for="pwd">비밀번호</label>
-		      <input type="password" class="form-control" name="pwd" id="pwd" placeholder="비밀번호를 입력하세요." required />
+		      <input type="password" class="form-control" name="pwd" id="pwd" value="1234" placeholder="Enter email" required />
 		      <div class="valid-feedback">Ok!!!</div>
 		      <div class="invalid-feedback">비밀번호를 입력해 주세요.</div>
 		    </div>

@@ -12,6 +12,8 @@
   <script>
     'use strict';
     
+    if(${pag} > ${totPage}) location.href="${ctp}/BoardList.bo?pag=${totPage}&pageSize=${pageSize}";
+    
     function pageCheck() {
     	let pageSize = document.getElementById("pageSize").value;
     	location.href = "${ctp}/BoardList.bo?pag=${pag}&pageSize="+pageSize;
@@ -37,7 +39,7 @@
   <h2 class="text-center">게 시 판 리 스 트</h2>
   <table class="table table-borderless">
     <tr>
-      <td><a href="${ctp}/BoardInput.bo" class="btn btn-primary btn-sm">글쓰기</a></td>
+      <td><c:if test="${sLevel != 1}"><a href="${ctp}/BoardInput.bo" class="btn btn-primary btn-sm">글쓰기</a></c:if></td>
       <td class="text-right">
         <!-- 한페이지 분량처리 -->
         <select name="pageSize" id="pageSize" onchange="pageCheck()">
@@ -61,19 +63,16 @@
     </tr>
     <c:forEach var="vo" items="${vos}" varStatus="st">
       <tr>
-        <td class="text-left">${curScrStartNo}</td>
-        <c:set var="curScrStartNo" value="${curScrStartNo-1}"></c:set>
-        <td>
+        <td>${curScrStartNo}</td>
+        <td class="text-left">
           <c:if test="${vo.openSw == 'OK' || sLevel == 0 || sMid == vo.mid}">
-            <a href="${ctp}/BoardContent.bo?idx=${vo.idx}&pag=${pag}&pageSize=${pageSize}">${vo.title}</a>
-            <c:if test="${vo.hour_diff <= 24}"><img src="${ctp}/images/new.gif"/></c:if>
+	          <a href="${ctp}/BoardContent.bo?idx=${vo.idx}&pag=${pag}&pageSize=${pageSize}">${vo.title}</a>
+	          <c:if test="${vo.hour_diff <= 24}"><img src="${ctp}/images/new.gif"/></c:if>
           </c:if>
           <c:if test="${vo.openSw != 'OK' && sLevel != 0 && sMid != vo.mid}">
-            ${vo.title}
+          	${vo.title}
           </c:if>
-          <c:if test="${vo.replyCount != 0}">
-            (${vo.replyCount})
-          </c:if>
+          <c:if test="${vo.replyCount != 0}">(${vo.replyCount})</c:if>
         </td>
         <td>${vo.nickName}</td>
         <td>
@@ -87,6 +86,7 @@
         <td>${vo.readNum}</td>
         <td>${vo.good}</td>
       </tr>
+      <c:set var="curScrStartNo" value="${curScrStartNo - 1}"/>
     </c:forEach>
     <tr><td colspan="6" class="m-0 p-0"></td></tr>
   </table>

@@ -10,6 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import study2.api.crime.DeleteCrimeDataCommond;
+import study2.api.crime.SaveCrimeDataCommond;
+import study2.calender.Calendar1Commond;
+import study2.calender.Calendar2Commond;
+import study2.modal.ModalTest2Commond;
 import study2.password.PassOk1Command;
 import study2.password.PassOk2Command;
 import study2.pdstest.DownLoadCommond;
@@ -128,6 +133,45 @@ public class StudyController extends HttpServlet {
 			command = new FileDeleteCommond();
 			command.execute(request, response);
 			return;
+		}
+		else if(com.equals("/ModalTest1")){
+			viewPage += "/modal/modalTest1.jsp";
+		}
+		else if(com.equals("/ModalTest2")){
+			command = new ModalTest2Commond();
+			command.execute(request, response);
+			viewPage += "/modal/modalTest2.jsp";
+		}
+		else if(com.equals("/Calendar1")){
+			command = new Calendar1Commond();
+			command.execute(request, response);
+			viewPage += "/calendar/calendar1.jsp";
+		}
+		else if(com.equals("/Calendar2")){
+			command = new Calendar2Commond();
+			command.execute(request, response);
+			viewPage += "/calendar/calendar2.jsp";
+		}
+		else if(com.equals("/ApiTest")){
+			viewPage += "/api/apiTest.jsp";
+		}
+		else if(com.equals("/CrimeApi")){
+			viewPage += "/api/crime/crimeApi.jsp";
+		}
+		else if(com.equals("/SaveCrimeData")){
+			command = new SaveCrimeDataCommond();
+			command.execute(request, response);
+			return;
+		}
+		else if(com.equals("/DeleteCrimeData")){
+			command = new DeleteCrimeDataCommond();
+			command.execute(request, response);
+			return;
+		}
+		else if(com.equals("/ListCrimeData")){
+			command = new ListCrimeDataCommond();
+			command.execute(request, response);
+			viewPage += "/api/crime/crimeApi.jsp";
 		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request, response);
